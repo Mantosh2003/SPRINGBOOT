@@ -4,8 +4,9 @@ import java.io.PrintWriter;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 // @Component
@@ -43,11 +44,23 @@ public class HelloController {
     // return "details-page";
     // }
 
-    @RequestMapping("/submit-details")
-    public String submitDetails(@RequestParam(value = "name1") String name, @RequestParam String phone, Model model) {
-        System.out.println("///////"+ name);
-        model.addAttribute("name1", name);
-        model.addAttribute("phone", phone);
+    // @RequestMapping(value="/submit-details", method=RequestMethod.POST)
+    // public String submitDetails(@RequestParam(value = "name1", required = false, defaultValue="SpringBoot") String name, @RequestParam String phone, Model model) {
+    //     System.out.println("///////"+ name);
+    //     model.addAttribute("name1", name);
+    //     model.addAttribute("phone", phone);
+
+    //     return "details-page";
+    // }
+
+// }
+
+
+    @RequestMapping(value="/submit-details", method=RequestMethod.POST)
+    public String submitDetails(@ModelAttribute Person person,Model model) {
+        
+        model.addAttribute("name1", person.getName1());
+        model.addAttribute("phone", person.getPhone());
 
         return "details-page";
     }
@@ -68,3 +81,23 @@ public class HelloController {
 // 3 tier => backend , Frontend DB
 // 2 tier = backend +frontend , db +> curentlly we are working on a 2 tier
 // application.
+
+
+
+// we need to add a depency for auto soave in the pom.xml dependency 
+// <dependency>
+//          	<groupId>org.springframework.boot</groupId>
+//           	 <artifactId>spring-boot-devtools</artifactId>
+//      		 <scope>runtime</scope>
+//     		  <optional>true</optional>
+//   </dependency>\
+
+
+// Model  => if  we want to send data from java to html we need model
+// @RequestParam => is used to get a query parameter from an HTTP request
+
+// what  is out name1 querry parameter is not available ?
+// it will show a white label error .....
+// to handle this we will use @RequestParam(value = "name1", required = false)
+// required :- we use to when we need only one param like here we have taken the for name1 => it will treat the value as optional value
+// defaultvalue is used to add a value default to the name1 if no value is present . 
