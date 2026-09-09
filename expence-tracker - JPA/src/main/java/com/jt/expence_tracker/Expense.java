@@ -21,7 +21,7 @@ import lombok.Setter;
 public class Expense {
     @Id 
     @GeneratedValue (strategy =GenerationType.IDENTITY)
-    private Integer id=0;
+    private int id=0;
     private String title;
     private String category;
     // private BigDecimal price;
