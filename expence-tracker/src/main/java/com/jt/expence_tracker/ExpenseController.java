@@ -130,7 +130,7 @@ public class ExpenseController {
 
 
 }
-//here when incorect details is entered it will show diffrent type of error .
+//here when incorect details is entered it will show diffrent type of error .:  ./mvmw package 
 
 
 
@@ -139,3 +139,6 @@ public class ExpenseController {
 // it tell what u write in java jpa will generate querry
 // java ee product of apche
 // jse-> oracle
+
+// how can we share out project .mvnw package => after build sucess =>targetfolder there will be present a file snapshot.jar type =>rightclick and open in new terminal.. then java -jar .\expence-tracker-0.0.1-SNAPSHOT.jar then the file will run our spring project
+// 
